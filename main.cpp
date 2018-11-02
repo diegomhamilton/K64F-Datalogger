@@ -30,8 +30,8 @@ SDFileSystem sd(PTE3, PTE1, PTE2, PTE4, "sd");  // MOSI, MISO, SCK, CS
 DigitalOut warning(D3);                         // When device is ready, led is permanently OFF
 DigitalOut logging(D4);                         // When data is beign acquired, led is ON
 InterruptIn start(D2, PullUp);                  // Press button to start/stop acquisition
-InterruptIn freq_chan1(D5, PullUp);             // Frequency channel 1
-InterruptIn freq_chan2(D6, PullUp);             // Frequency channel 2
+InterruptIn freq_chan1(D0, PullUp);             // Frequency channel 1
+InterruptIn freq_chan2(D1, PullUp);             // Frequency channel 2
 AnalogIn pot0(A0),
          pot1(A1),
          pot2(A2),
@@ -90,7 +90,7 @@ int main()
     char name_file[20];                         // Name of current file (partX)
     FILE* fp;                                   
     packet_t temp;
-    signal_wave.period(0.0001f);
+    signal_wave.period_us(50);
     signal_wave.write(0.5f);
     
     /* Initialize accelerometers */
